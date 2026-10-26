@@ -1,5 +1,5 @@
 #!/bin/bash
-if then
+
 case "${1:-}" in
      help)
     echo "Usage: ./app.sh <command> [arguments]"
