@@ -131,3 +131,28 @@ The pipeline stops progressing if a required job fails.
 - Docker
 - Docker Compose
 - GitHub Actions
+
+## CI Failure and Recovery Demonstration
+
+A controlled CI failure was performed on the `feature/ci-failure-demo` branch to verify that GitHub Actions detects invalid Bash code.
+
+### Failure Demonstration
+
+1. Created the `feature/ci-failure-demo` branch.
+2. Introduced an invalid Bash statement (`if then`) in `app/app.sh`.
+3. Committed and pushed the change to GitHub.
+4. GitHub Actions detected the syntax error during the validation job.
+5. The automated tests and Docker build jobs were skipped because they depended on successful validation.
+
+**Failed CI run:** [View failed workflow](https://github.com/dreyyxl/assignment-3-practice/actions/runs/40409013538)
+
+### Recovery Demonstration
+
+1. Removed the invalid Bash statement.
+2. Executed `bash scripts/lint.sh` successfully.
+3. Executed `bash tests/test.sh`, obtaining 8 passed and 0 failed.
+4. Executed `bash scripts/build.sh` successfully.
+5. Committed and pushed the correction.
+6. GitHub Actions successfully completed all three jobs.
+
+**Successful recovery run:** [View successful workflow](https://github.com/dreyyxl/assignment-3-practice/actions/runs/40411829154)
